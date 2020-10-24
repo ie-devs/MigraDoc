@@ -64,12 +64,16 @@ namespace MigraDoc.RtfRendering
         {
             bool renderInParagraph = RenderInParagraph();
             DocumentElements elms = DocumentRelations.GetParent(_image) as DocumentElements;
-            if (elms != null && !renderInParagraph &&
-                !(DocumentRelations.GetParent(elms) is Section || DocumentRelations.GetParent(elms) is HeaderFooter))
+            if (this._image.DynamicImage)
+            {
+            } 
+            else if (elms != null && !renderInParagraph &&
+                     !(DocumentRelations.GetParent(elms) is Section || DocumentRelations.GetParent(elms) is HeaderFooter))
             {
                 Debug.WriteLine(Messages2.ImageFreelyPlacedInWrongContext(_image.Name), "warning");
                 return;
             }
+
             if (renderInParagraph)
                 StartDummyParagraph();
 
@@ -146,6 +150,12 @@ namespace MigraDoc.RtfRendering
 
         private void RenderSourceType()
         {
+            if (this._image.DynamicImage)
+            {
+              this._rtfWriter.WriteControl("jpegblip");
+              return;
+            }
+
             string extension = Path.GetExtension(_filePath);
             if (extension == null)
             {
@@ -205,9 +215,18 @@ namespace MigraDoc.RtfRendering
             XImage bip = null;
             try
             {
-                _imageFile = File.OpenRead(_filePath);
-                //System.Drawing.Bitmap bip2 = new System.Drawing.Bitmap(imageFile);
-                bip = XImage.FromFile(_filePath);
+                if (_image.DynamicImage)
+                {
+                  using (var stream = new MemoryStream(_image.ImageData))
+                    bip = new XImage(stream);
+                }
+                else
+                {
+                  _imageFile = File.OpenRead(_filePath);
+
+                  //System.Drawing.Bitmap bip2 = new System.Drawing.Bitmap(imageFile);
+                  bip = XImage.FromFile(_filePath);
+                }
 
                 float horzResolution;
                 float vertResolution;
@@ -302,7 +321,17 @@ namespace MigraDoc.RtfRendering
         /// </summary>
         private void RenderByteSeries()
         {
-            if (_imageFile != null)
+            if (_image.DynamicImage)
+            {
+              foreach (var byteVal in this._image.ImageData)
+              {
+                string strVal = byteVal.ToString("x");
+                if (strVal.Length == 1)
+                  this._rtfWriter.WriteText("0");
+                this._rtfWriter.WriteText(strVal);
+              }
+            }
+            else if (_imageFile != null)
             {
                 _imageFile.Seek(0, SeekOrigin.Begin);
                 int byteVal;

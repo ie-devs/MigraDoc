@@ -170,6 +170,14 @@ namespace MigraDoc.DocumentObjectModel
         }
 
         /// <summary>
+        /// Adds a new Image to the section.
+        /// </summary>
+        public Image AddImage(byte[] imageData)
+        {
+          return this.Elements.AddImage(imageData);
+        }
+
+        /// <summary>
         /// Adds a new textframe to the section.
         /// </summary>
         public TextFrame AddTextFrame()

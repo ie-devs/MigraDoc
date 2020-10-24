@@ -323,6 +323,15 @@ namespace MigraDoc.DocumentObjectModel
         {
             return Elements.AddImage(fileName);
         }
+
+        /// <summary>
+        /// Adds a new Image object
+        /// </summary>
+        public Image AddImage(byte[] imageData)
+        {
+          return this.Elements.AddImage(imageData);
+        }
+
         /// <summary>
         /// Adds a new Bookmark
         /// </summary>

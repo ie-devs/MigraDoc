@@ -47,6 +47,12 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         public Image()
         { }
 
+        public Image(byte[] imageData)
+          : this()
+        {
+          this.ImageData = imageData;
+        }
+
         /// <summary>
         /// Initializes a new instance of the Image class with the specified parent.
         /// </summary>
@@ -58,7 +64,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         public Image(string name)
             : this()
         {
-            Name = name;
+            this.Name = name;
+        }
+
+        public byte[] ImageData { get; private set; }
+
+        public bool DynamicImage
+        {
+          get { return this.ImageData != null; }
         }
 
         //#region Methods
@@ -191,6 +204,10 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         /// </summary>
         public string GetFilePath(string workingDir)
         {
+            // return empty string if it has image data to draw.
+            if (this.ImageData != null)
+              return string.Empty;
+
             if (Name.StartsWith("base64:")) // The file is stored in the string here, so we don't have to add a path.
                 return Name;
 

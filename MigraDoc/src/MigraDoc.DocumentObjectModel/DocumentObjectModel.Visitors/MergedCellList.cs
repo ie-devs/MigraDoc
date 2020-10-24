@@ -245,22 +245,39 @@ namespace MigraDoc.DocumentObjectModel.Visitors
             if (relevantDocObj == null || relevantDocObj.IsNull("Width"))
                 relevantDocObj = borders;
 
-            // Avoid unnecessary GetValue calls.
+            // below code is from version 1.3
             object visible = relevantDocObj.GetValue("visible", GV.GetNull);
-            if (visible != null && !(bool)visible)
-                return 0;
-
-            object width = relevantDocObj.GetValue("width", GV.GetNull);
-            if (width != null)
-                return (Unit)width;
-
-            object color = relevantDocObj.GetValue("color", GV.GetNull);
-            if (color != null)
-                return 0.5;
-
             object style = relevantDocObj.GetValue("style", GV.GetNull);
-            if (style != null)
-                return 0.5;
+            object width = relevantDocObj.GetValue("width", GV.GetNull);
+            object color = relevantDocObj.GetValue("color", GV.GetNull);
+            
+            if (visible != null || style != null || width != null || color != null)
+            {
+              if (visible != null && !(bool)visible)
+                return 0;
+              if (width != null)
+                return (Unit)width;
+            
+              return 0.5;
+            }
+
+            // below is 1.5 original source code, it will let cell's border missing.
+            // Avoid unnecessary GetValue calls.
+            ////object visible = relevantDocObj.GetValue("visible", GV.GetNull);
+            ////if (visible != null && !(bool)visible)
+            ////    return 0;
+
+            ////object width = relevantDocObj.GetValue("width", GV.GetNull);
+            ////if (width != null)
+            ////    return (Unit)width;
+
+            ////object color = relevantDocObj.GetValue("color", GV.GetNull);
+            ////if (color != null)
+            ////    return 0.5;
+
+            ////object style = relevantDocObj.GetValue("style", GV.GetNull);
+            ////if (style != null)
+            ////    return 0.5;
             return 0;
         }
 

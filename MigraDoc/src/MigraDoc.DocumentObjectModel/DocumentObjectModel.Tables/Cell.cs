@@ -147,6 +147,14 @@ namespace MigraDoc.DocumentObjectModel.Tables
         }
 
         /// <summary>
+        /// Adds a new Image to the cell.
+        /// </summary>
+        public Image AddImage(byte[] imageData)
+        {
+          return this.Elements.AddImage(imageData);
+        }
+
+        /// <summary>
         /// Adds a new textframe to the cell.
         /// </summary>
         public TextFrame AddTextFrame()

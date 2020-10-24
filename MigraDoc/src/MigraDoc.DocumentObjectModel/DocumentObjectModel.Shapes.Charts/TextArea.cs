@@ -123,6 +123,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes.Charts
         }
 
         /// <summary>
+        /// Adds a new Image to the text area.
+        /// </summary>
+        public Image AddImage(byte[] imageData)
+        {
+          return this.Elements.AddImage(imageData);
+        }
+
+        /// <summary>
         /// Adds a new legend to the text area.
         /// </summary>
         public Legend AddLegend()

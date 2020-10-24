@@ -125,6 +125,14 @@ namespace MigraDoc.DocumentObjectModel.Shapes
         }
 
         /// <summary>
+        /// Adds a new Image to the cell.
+        /// </summary>
+        public Image AddImage(byte[] imageData)
+        {
+          return this.Elements.AddImage(imageData);
+        }
+
+        /// <summary>
         /// Adds a new paragraph to the text frame.
         /// </summary>
         public void Add(Paragraph paragraph)

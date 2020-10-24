@@ -422,6 +422,16 @@ namespace MigraDoc.DocumentObjectModel
         }
 
         /// <summary>
+        /// Adds a new Image.
+        /// </summary>
+        public Image AddImage(byte[] imageData)
+        {
+          Image image = new Image(imageData);
+          Add(image);
+          return image;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         public override void Add(DocumentObject docObj)
