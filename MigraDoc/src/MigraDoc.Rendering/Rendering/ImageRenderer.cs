@@ -133,6 +133,7 @@ namespace MigraDoc.Rendering
                 {
                     if (xImage != null)
                         xImage.Dispose();
+
                     if (stream != null)
                         stream.Dispose();
                 }
