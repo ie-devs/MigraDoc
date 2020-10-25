@@ -328,11 +328,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp-wpf\PdfSharp-wpf.csproj">
+    <ProjectReference Include="..\..\..\..\PDFSharp\src\PdfSharp-wpf\PdfSharp-wpf.csproj">
       <Project>{02fcc0bb-2aa2-43ba-8d2f-66d168b87a1d}</Project>
       <Name>PdfSharp-wpf</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp.Charting-wpf\PdfSharp.Charting-wpf.csproj">
+    <ProjectReference Include="..\..\..\..\PDFSharp\src\PdfSharp.Charting-wpf\PdfSharp.Charting-wpf.csproj">
       <Project>{e6a2734e-0cd6-4210-8aec-47ee348f8d78}</Project>
       <Name>PdfSharp.Charting-wpf</Name>
     </ProjectReference>

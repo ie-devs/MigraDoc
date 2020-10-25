@@ -277,11 +277,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp-gdi\PdfSharp-gdi.csproj">
+    <ProjectReference Include="..\..\..\..\PDFSharp\src\PdfSharp-gdi\PdfSharp-gdi.csproj">
       <Project>{5384ce57-1f94-4d22-860d-2e9c1ac12ddf}</Project>
       <Name>PdfSharp-gdi</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\PDFsharp\src\PdfSharp.Charting-gdi\PdfSharp.Charting-gdi.csproj">
+    <ProjectReference Include="..\..\..\..\PDFSharp\src\PdfSharp.Charting-gdi\PdfSharp.Charting-gdi.csproj">
       <Project>{cfdb7d46-ea8d-47de-b10a-9e755a1b48ba}</Project>
       <Name>PdfSharp.Charting-gdi</Name>
     </ProjectReference>
